@@ -72,6 +72,7 @@ def load_data(task_arg, data_arg, tokenizer):
         length_function=lambda x: len(tokenizer.tokenize(x))
         )
     texts = text_splitter.split_documents(document)
+    print(f"Number of chunks: {len(texts)}")
     return texts
 
 def plot_chunks(texts, tokenizer, task_arg, model_id_arg):
@@ -85,15 +86,19 @@ def plot_chunks(texts, tokenizer, task_arg, model_id_arg):
     plt.xlabel('Token Count')
     plt.ylabel('Frequency')
     plt.title('Histogram of token counts per chunk')
-    plt.ylim(0, 100)
+    plt.ylim(0, len(texts))
     plt.savefig(f'results/{task_arg}_histogram_{model_id_arg}.png')
 
 
 ########################### UPLOAD TO DB ###########################
 def upload_to_db(texts, embeddings):
     print("Uploading data to the Chroma database...")
+    db_start = time.time()
     # Upload the data to the database
-    db = Chroma.from_documents(texts, embeddings) #, persist_directory="db"
+    db = Chroma.from_documents(texts, embeddings)
+    db_end = time.time()
+    db_runtime = db_end - db_start
+    print(f"Database runtime: {db_runtime // 3600} hours {(db_runtime % 3600) // 60} minutes {db_runtime % 60} seconds")
     return db
 
 ########################### RETRIEVAL ###########################
@@ -169,6 +174,7 @@ def get_responses(questions_data_arg, task_arg, model_id_arg, qa_chain):
         result = response["result"]
         responses.append(result)
         # Append the context chunks
+        print("Appending chunks...")
         for c in range(len(response["source_documents"])):
             chunk = response["source_documents"][c].page_content
             # Use the loop variable to create a key for the dictionary
@@ -178,7 +184,6 @@ def get_responses(questions_data_arg, task_arg, model_id_arg, qa_chain):
                 context_chunks[key] = []
             # Append the chunk to the list
             context_chunks[key].append(chunk)
-            print("Appending chunks...")
             print(f"Question {i+1} of {len(df)}: Chunk {c+1} of {len(response['source_documents'])}")
 
     # Add the responses to the dataframe
