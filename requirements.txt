@@ -23,3 +23,6 @@ sentence_transformers
 pinecone-client
 InstructorEmbedding
 pypdfium2
+PyPDF2
+seaborn
+openai
