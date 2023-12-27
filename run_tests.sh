@@ -1,4 +1,5 @@
-# OBS: Be sure to activate the virtual environment before running this script
+# Activates virtual environment
+source venv/bin/activate
 
 # Measure runtime, start timer
 start=`date +%s`
@@ -47,3 +48,5 @@ hours=$((runtime / 3600))
 minutes=$(( (runtime % 3600) / 60 ))
 seconds=$(( (runtime % 3600) % 60 ))
 echo "Runtime: $hours hours, $minutes minutes, $seconds seconds"
+
+deactivate
