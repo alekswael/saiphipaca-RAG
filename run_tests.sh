@@ -6,6 +6,15 @@ start=`date +%s`
 
 # Run tests
 
+# GPT BASELINE TESTS
+
+echo "GPT baseline testing..."
+python3 ./src/benchmark_scores/RAG_test_GPT.py -t single_paper -id gpt
+echo "GPT baseline single_paper done"
+python3 ./src/benchmark_scores/RAG_test_GPT.py -t joint_paper -id gpt
+echo "GPT baseline joint_paper done"
+echo "GPT baseline tests done!"
+
 # Phi-1.5 tests
 echo "phi-1.5 testing..."
 python3 ./src/benchmark_scores/RAG_test.py -t single_paper -id phi-1_5 -phipaca no -saiphipaca no
