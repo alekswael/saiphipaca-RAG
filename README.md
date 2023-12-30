@@ -1,8 +1,8 @@
-# David and Goliath: Instruction fine-tuning a small LLM (phi-1.5) on synthetic data for use in RAG applications
+# David and Goliath: Domain-specific instruction fine-tuning of a lightweight LLM (phi-1.5) on synthetic data for use in RAG applications
 
 This repository contains the code for instruction tuning `microsoft/phi-1_5` on the Alpaca dataset and on the Synthetic Academic Dataset (SAI) to create two models: `alekswael/phipaca` and `alekswael/saiphipaca`. It also includes the code for generating the SAI dataset, Alpaca subset and a benchmark for testing the models performance on a Retrieval Augmented Generation (RAG) task.
 
-#### Abstract from Wael & Baskakovs (2023):
+#### Abstract from [Wael](https://github.com/alekswael) & [Baskakovs](https://github.com/sashapustota) (2023):
 _The development of large language models (LLMs) like OpenAI's GPT-4 has yielded incredible results for NLP tasks. Despite their impressive capabilities, the scale of these models poses challenges in terms of computational resources and accessibility. This study addresses the issue of scale in LLMs by exploring the viability of smaller language models (SLMs) in achieving comparable performance to their larger counterparts. In this context, we instruction-tune a small 1.3B parameter model (Microsoft’s phi-1.5) using QLoRA, on two datasets; 1) using a subset of the Alpaca dataset for task-independent instruction-following abilities, and 2) using a generated Synthetic Academic Instruct dataset for task-dependent performance. The fine-tuned models, named phipaca and saiphipaca, are then evaluated against the base phi-1.5 model in a Retrieval Augmented Generation (RAG) task. Our evaluation, based on cosine similarity with outputs from a state-of-the-art model (gpt-3.5-turbo) and an inspection of model outputs, reveals that while the base model performs well, the fine-tuned models exhibit limitations, such as false information and hallucinations, suggesting a need for refinement in training methodologies._
 
 ## Project Structure
