@@ -7,6 +7,8 @@ _The development of large language models (LLMs) like OpenAI's GPT-4 has yielded
 
 ## Project Structure
 
+![Alt text](project_scope.png)
+
 - `data/`: Contains the datasets used for training the models. It includes the SAI dataset, Alpaca dataset, and benchmark data.
 - `models/`: Contains the saved model checkpoints. It includes the phipaca checkpoint (alpaca_peft) and the saiphipaca checkpoint (synthetic_peft).
 - `results/`: Contains the results of the model training and evaluation. It includes chunk histograms, cosine similarity plots, and CSV files with results for different tasks.
